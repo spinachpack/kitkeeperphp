@@ -1,14 +1,14 @@
 <?php
 // Database Configuration
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'kitkeeper_db');
+// define('DB_HOST', 'localhost');
+// define('DB_USER', 'root');
+// define('DB_PASS', '');
+// define('DB_NAME', 'kitkeeper_db');
 
-// define('DB_HOST', 'sql12.freesqldatabase.com');
-// define('DB_USER', 'sql12803943');
-// define('DB_PASS', 'c7Qml3hX7b');
-// define('DB_NAME', 'sql12803943');
+define('DB_HOST', 'sql12.freesqldatabase.com');
+define('DB_USER', 'sql12803943');
+define('DB_PASS', 'c7Qml3hX7b');
+define('DB_NAME', 'sql12803943');
 
 
 
@@ -29,9 +29,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Base URL
-// define('BASE_URL', 'https://kitkphp.onrender.com/');
+define('BASE_URL', 'https://kitkeeperphp.onrender.com/');
 
-define('BASE_URL', 'http://localhost:1800/');
+// define('BASE_URL', 'http://localhost:1800/');
 
 // Upload directory
 define('UPLOAD_DIR', 'uploads/');
