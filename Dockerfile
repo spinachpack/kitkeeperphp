@@ -1,23 +1,25 @@
-# Use official PHP image with Apache
+# Use the official PHP + Apache image
 FROM php:8.2-apache
 
-# Copy project files into the container
-COPY . /var/www/html/
+# Install mysqli extension
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
-# Set working directory
-WORKDIR /var/www/html
-
-# Install required PHP extensions (MySQLi, PDO)
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-
-# Enable Apache mod_rewrite (useful for clean URLs)
+# Enable Apache mod_rewrite if needed
 RUN a2enmod rewrite
 
-# Set proper file permissions for uploads
-RUN mkdir -p /var/www/html/uploads && chmod -R 777 /var/www/html/uploads
+# Copy app files
+COPY . /var/www/html/
 
-# Expose port 80
+# Make sure the Apache user owns the app directory
+RUN chown -R www-data:www-data /var/www/html
+
+# Create upload directories and ensure writable permissions
+RUN mkdir -p /var/www/html/uploads/profiles /var/www/html/uploads/equipment && \
+    chmod -R 775 /var/www/html/uploads && \
+    chown -R www-data:www-data /var/www/html/uploads
+
+# Expose port 80 for Render
 EXPOSE 80
 
-# Start Apache
+# Run Apache in the foreground
 CMD ["apache2-foreground"]
